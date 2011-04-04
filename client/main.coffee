@@ -25,34 +25,32 @@ fetch = (direction, $post) ->
   $.get "/?#{direction}=#{id}", (data, status, req) ->
     $post[insertMethod] $("section#posts", data).html()
 
-updatePost = (selector) ->
+viewPost = (selector) ->
   $post = $(selector)
-  $anchor = $("header > h1 > a", selector)
-  $prev = $post.prevAll()
-  $next = $post.nextAll()
+  $prev = $post.prev()
+  $next = $post.next()
+
   if $prev.length > 0
-    $("#container > a.prev").show().attr("href", $("header > h1 > a", $prev[$prev.length - 1]).attr("href"))
-    if $prev.length < 3
-      fetch 'prev', $post
+    $("#container > a.prev").show().attr("href", $("header > h1 > a", $prev).attr("href"))
   else
     $("#container > a.prev").hide()
   if $next.length > 0
-    $("#container > a.next").show().attr("href", $("header > h1 > a", $next[0]).attr("href"))
-    if $next.length < 3
-      fetch 'next', $post
+    $("#container > a.next").show().attr("href", $("header > h1 > a", $next).attr("href"))
   else
     $("#container > a.next").hide()
 
+  $anchor = $("header > h1 > a", selector)
   window.history.pushState {}, $anchor.text(), $anchor.attr("href")
+
+  scrollTo selector
 
 scrollTo = (target) ->
   $("#container").scrollTo target, 1500,
     easing: "easeOutBounce"
     axis: "x"
-    onAfter: updatePost
 
 $("#container > a.prev, #container > a.next").live "click", ->
-  scrollTo "#post-" + $(this).attr("href")[1..]
+  viewPost "#post-" + $(this).attr("href")[1..]
   return false
 
 $("article > a.prev, article > a.next").live "click", scroller "ul.images"
@@ -67,7 +65,7 @@ $ ->
   $window = $(window)
 
   if window.location.pathname isnt "/"
-    scrollTo window.location.pathname[1..]
+    viewPost "#post-#{window.location.pathname[1..]}"
 
   # Update button
   do ->
