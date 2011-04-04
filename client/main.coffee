@@ -25,8 +25,11 @@ fetch = (direction, $post) ->
   $.get "/?#{direction}=#{id}", (data, status, req) ->
     $post[insertMethod] $("section#posts", data).html()
 
-viewPost = (selector) ->
-  $post = $(selector)
+window.onpopstate = (event) ->
+  viewPost(event.state.href, false) if event.state
+
+viewPost = (url, pushState) ->
+  $post = $("#post-#{url[1..]}")
   $prev = $post.prev()
   $next = $post.next()
 
@@ -39,10 +42,14 @@ viewPost = (selector) ->
   else
     $("#container > a.next").hide()
 
-  $anchor = $("header > h1 > a", selector)
-  window.history.pushState {}, $anchor.text(), $anchor.attr("href")
+  $anchor = $("header > h1 > a", $post)
+  title = $anchor.text()
+  href = $anchor.attr("href")
 
-  scrollTo selector
+  if pushState
+    window.history.pushState {title: title, href: href}, title, href
+
+  scrollTo $post
 
 scrollTo = (target) ->
   $("#container").scrollTo target, 1500,
@@ -50,7 +57,7 @@ scrollTo = (target) ->
     axis: "x"
 
 $("#container > a.prev, #container > a.next").live "click", ->
-  viewPost "#post-" + $(this).attr("href")[1..]
+  viewPost($(this).attr("href"), true)
   return false
 
 $("article > a.prev, article > a.next").live "click", scroller "ul.images"
@@ -65,7 +72,7 @@ $ ->
   $window = $(window)
 
   if window.location.pathname isnt "/"
-    viewPost "#post-#{window.location.pathname[1..]}"
+    viewPost(window.location.pathname, false)
 
   # Update button
   do ->
