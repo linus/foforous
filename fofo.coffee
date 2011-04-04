@@ -31,9 +31,13 @@ app.dynamicHelpers
   csrf: csrf.token
 
   checksum: (req, res) ->
-    (file) ->
+    cache = {}
+    calculate = (file) ->
       contents = fs.readFileSync(path.join(public, file[1..]))
-      checksum = crypto.createHash("md5").update(contents).digest("base64").replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_")
+      crypto.createHash("md5").update(contents).digest("base64").replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_")
+
+    (file) ->
+      checksum = cache[file] or (cache[file] = calculate(file))
       file + "?" + checksum
 
   humanDate: (req, res) ->
