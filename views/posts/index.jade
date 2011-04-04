@@ -1,5 +1,5 @@
 - if(posts.length)
-  a(href='/' + posts[1].slug, class='prev') &#x21b5;
-  a(href='/' + posts[posts.length - 1].slug, class='next') &#x21b3;
+  a(href='#', class='prev', style='display: none') &#x21b5;
+  a(href='/' + posts[1].slug, class='next') &#x21b3;
   section#posts
     != partial('post.jade', posts)
