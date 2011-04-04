@@ -55,6 +55,7 @@ app.use express.cookieParser()
 app.use express.session(secret: config.password)
 app.use express.bodyParser()
 app.use csrf.check()
+app.use express.favicon(path.join(public, "favicon.ico"))
 
 app.configure 'development', ->
   app.use stylus.middleware(src: path.join(views, 'styles'), dest: public)
