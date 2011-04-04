@@ -1,0 +1,13 @@
+article(id='post-' + post.slug)
+  header
+    h1
+      a(rel='bookmark', href='/' + post.slug) #{post.title}
+  - if(post.media[2].images.length)
+    ul.images
+      != partial('image', post.media[2].images)
+    a(href='#', class='prev') &#x21b5;
+    a(href='#', class='next') &#x21b3;
+  section.content
+    != post.body_html.replace(/\[\[posterous-content:.*\]\]/, '')
+  footer
+    != partial('date', { collection: [post.display_date], as: 'date' })

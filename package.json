@@ -1,0 +1,19 @@
+{
+  "name": "fofoflanelle",
+  "description": "Le blög de Fofo Flanelle",
+  "version": "0.1.0",
+  "author": "Linus G Thiel <linus@hanssonlarsson.se> (http://hanssonlarsson.se/)",
+  "contributors": [ 
+    { "name": "Linus G Thiel", "email": "linus@hanssonlarsson.se" }
+  ],
+  "dependencies": {
+    "express": "2.2.0",
+    "express-csrf": "0.2.0",
+    "stylus": ">= 0.6.3",
+    "jade": ">= 0.10.3",
+    "coffee-script": ">= 1.0.1",
+    "request": ">= 1.2.0"
+  },
+  "keywords": ["blog", "posterous"],
+  "engines": { "node": ">= 0.4.0" }
+}

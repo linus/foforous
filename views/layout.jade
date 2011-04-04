@@ -1,0 +1,26 @@
+!!! 5
+html(lang="sv")
+  head
+    title Fofo Flanelle
+    link(rel="stylesheet", href="/stylesheets/main.css")
+  body
+    header.main
+      ul#notices
+        != partial('flash')
+      h1
+        a(href="/") Fofo Flanelle
+    #container
+      != body
+    footer.main
+      span &copy;&nbsp;
+        a(href="/") Fofo Flanelle
+      span &#x2709;&nbsp;
+        a(href="mailto:fofoflanelle@gmail.com", title="E-mail") fofoflanelle@gmail.com
+      span &#x2706;&nbsp;
+        a(href="callto:+46704191794", title="Telephone") +46 704 19 17 94
+    script(src="http://www.google.com/jsapi")
+    script
+      google.load("jquery", "1.5.1");
+      google.load("jqueryui", "1.8.11");
+    script(src="/jquery.scrollTo-min.js")
+    script(src="/main.js")

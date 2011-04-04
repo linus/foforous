@@ -1,0 +1,167 @@
+@import url(//fonts.googleapis.com/css?family=Covered+By+Your+Grace);
+body {
+  font-size: 100%;
+  line-height: 1.5em;
+  padding: 1em;
+  font: 1em / 1.3 "Helvetica Neue", Helvetica, "Lucida Grande", Arial, sans-serif;
+  font-weight: lighter;
+  text-shadow: 2px 1px 2px rgba(0,0,0,0.2);
+  color: #000;
+  background: #fbf9f5;
+}
+body a {
+  text-decoration: none;
+  color: #000;
+}
+body a:hover {
+  text-decoration: underline;
+  color: #333;
+}
+body ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body form#update {
+  text-align: center;
+  margin-top: 10em;
+}
+body form#update button {
+  background: #f00;
+  color: #fff;
+  font: 1em / 1.3 "Helvetica Neue", Helvetica, "Lucida Grande", Arial, sans-serif;
+  font-size: 3em;
+}
+body #notices {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+body #notices .notice {
+  padding: 0.5em 1.5em;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 1px 1px rgba(0,0,0,0.5);
+  border-style: solid;
+  border-width: 0 0 1px 0;
+}
+body #notices .notice.info {
+  background: #008000;
+  border-color: #004d00;
+}
+body #notices .notice.warning {
+  background: #ff0;
+  border-color: #cc0;
+}
+body #notices .notice.error {
+  background: #f00;
+  border-color: #c00;
+}
+body #notices .notice .close {
+  float: right;
+  font-weight: bold;
+  color: rgba(0,0,0,0.5);
+  text-shadow: 1px 1px rgba(255,255,255,0.3);
+}
+body #notices .notice .close:hover {
+  text-decoration: none;
+}
+body #container {
+  width: 940px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+body #container a.prev {
+  position: fixed;
+  left: 0.25em;
+  top: 240px;
+  font-size: 6em;
+  font-weight: bold;
+}
+body #container a.prev:hover {
+  text-decoration: none;
+  top: 242px;
+}
+body #container a.next {
+  position: fixed;
+  right: 0.25em;
+  top: 240px;
+  font-size: 6em;
+  font-weight: bold;
+}
+body #container a.next:hover {
+  text-decoration: none;
+  top: 242px;
+}
+body #container section#posts {
+  width: 10000em;
+}
+body #container section#posts article {
+  width: 940px;
+  overflow: hidden;
+  float: left;
+}
+body #container section#posts article header,
+body #container section#posts article section.content,
+body #container section#posts article footer,
+body #container section#posts article ul.images li {
+  padding: 0 204px;
+}
+body #container section#posts article ul.images {
+  width: 10000em;
+}
+body #container section#posts article ul.images li {
+  float: left;
+  position: relative;
+  font-family: "Covered By Your Grace", sans-serif;
+  color: rgba(255,255,255,0.7);
+}
+body #container section#posts article ul.images li img {
+  vertical-align: top;
+  background: rgba(0,0,0,0.9);
+  padding: 1em 1em 7em;
+  box-shadow: 1px 1px 5px #666;
+}
+body #container section#posts article ul.images li h2 {
+  position: absolute;
+  bottom: 1em;
+  left: 250px;
+  text-shadow: none;
+}
+body #container section#posts article a.prev,
+body #container section#posts article a.next {
+  font-size: 100%;
+  position: relative;
+  top: -6em;
+  color: rgba(255,255,255,0.7);
+  text-shadow: none;
+}
+body #container section#posts article a.prev {
+  left: 220px;
+}
+body #container section#posts article a.next {
+  left: 686px;
+}
+body header.main {
+  margin: 0 auto;
+  width: 960px;
+}
+body header.main h1 a {
+  display: block;
+  text-indent: -10000em;
+  background-image: url("http://fofoflanelle.com/fashion-de-fofo-flanelle.png");
+  height: 121px;
+  width: 960px;
+}
+body footer {
+  font-size: 0.8em;
+  font-weight: normal;
+}
+body footer.main {
+  margin: 1.5em auto 0;
+  width: 940px;
+  text-align: center;
+}
+body footer.main span {
+  margin: 0 0.5em;
+}
