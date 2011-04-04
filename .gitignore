@@ -1,3 +1,5 @@
 /node_modules
 /stuff
 /config.coffee
+/public/main.js
+/public/stylesheets

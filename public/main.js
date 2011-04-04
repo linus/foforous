@@ -1,5 +1,5 @@
 (function() {
-  var fetch, scroll, scrollTo, scroller, updatePost;
+  var fetch, scroll, scrollTo, scroller, viewPost;
   scroll = function(element, selector, direction) {
     var container, containerLeft;
     container = element.siblings(selector);
@@ -38,39 +38,33 @@
       return $post[insertMethod]($("section#posts", data).html());
     });
   };
-  updatePost = function(selector) {
+  viewPost = function(selector) {
     var $anchor, $next, $post, $prev;
     $post = $(selector);
-    $anchor = $("header > h1 > a", selector);
-    $prev = $post.prevAll();
-    $next = $post.nextAll();
+    $prev = $post.prev();
+    $next = $post.next();
     if ($prev.length > 0) {
-      $("#container > a.prev").show().attr("href", $("header > h1 > a", $prev[$prev.length - 1]).attr("href"));
-      if ($prev.length < 3) {
-        fetch('prev', $post);
-      }
+      $("#container > a.prev").show().attr("href", $("header > h1 > a", $prev).attr("href"));
     } else {
       $("#container > a.prev").hide();
     }
     if ($next.length > 0) {
-      $("#container > a.next").show().attr("href", $("header > h1 > a", $next[0]).attr("href"));
-      if ($next.length < 3) {
-        fetch('next', $post);
-      }
+      $("#container > a.next").show().attr("href", $("header > h1 > a", $next).attr("href"));
     } else {
       $("#container > a.next").hide();
     }
-    return window.history.pushState({}, $anchor.text(), $anchor.attr("href"));
+    $anchor = $("header > h1 > a", selector);
+    window.history.pushState({}, $anchor.text(), $anchor.attr("href"));
+    return scrollTo(selector);
   };
   scrollTo = function(target) {
     return $("#container").scrollTo(target, 1500, {
       easing: "easeOutBounce",
-      axis: "x",
-      onAfter: updatePost
+      axis: "x"
     });
   };
   $("#container > a.prev, #container > a.next").live("click", function() {
-    scrollTo("#post-" + $(this).attr("href").slice(1));
+    viewPost("#post-" + $(this).attr("href").slice(1));
     return false;
   });
   $("article > a.prev, article > a.next").live("click", scroller("ul.images"));
@@ -85,7 +79,7 @@
     var $window, firstMove;
     $window = $(window);
     if (window.location.pathname !== "/") {
-      scrollTo(window.location.pathname.slice(1));
+      viewPost("#post-" + window.location.pathname.slice(1));
     }
     (function() {
       var $updateForm, delayHide, hide, show;
