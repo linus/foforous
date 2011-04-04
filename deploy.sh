@@ -1,10 +1,8 @@
 #!/bin/bash
 
 PROJECT_NAME=foforous
-RELEASE="releases/$(date +%Y%m%d%H%M%S)"
 
 DEPLOY_PATH=/tmp/$PROJECT_NAME
-RELEASE_PATH=$DEPLOY_PATH/$RELEASE
 
 SSH="ssh -p 32734 linus@prod2.hanssonlarsson.se"
 
@@ -29,9 +27,13 @@ function restart {
 }
 
 function deploy {
-    tag=$1
-    if [ "x$tag" = "x" ]; then tag=master; fi
-    upload_tar $tag
+    TAG=$1
+    if [ "x$TAG" = "x" ]; then TAG=master; fi
+
+    RELEASE="releases/$TAG-$(date +%Y%m%d%H%M%S)"
+    RELEASE_PATH=$DEPLOY_PATH/$RELEASE
+
+    upload_tar $TAG
     dist
 }
 
