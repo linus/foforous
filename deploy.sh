@@ -23,7 +23,7 @@ function dist {
 }
 
 function copy_settings {
-    remote "cd $RELEASE_PATH; cp -n config.coffee.sample $DEPLOY_DIR/config/config.coffee; sudo cp -n etc/$PROJECT_NAME.conf /etc/init; sudo cp -n etc/lighttpd.conf /etc/lighttpd/conf-available/25-$PROJECT_NAME.conf; sudo ln -s /etc/lighttpd/conf-available/25-$PROJECT_NAME.conf /etc/lighttpd/conf/enabled/25-$PROJECT_NAME.conf"
+    remote "cd $RELEASE_PATH; cp -n config.coffee.sample $DEPLOY_PATH/config/config.coffee; sudo cp -n etc/$PROJECT_NAME.conf /etc/init; sudo cp -n etc/lighttpd.conf /etc/lighttpd/conf-available/25-$PROJECT_NAME.conf; sudo ln -s /etc/lighttpd/conf-available/25-$PROJECT_NAME.conf /etc/lighttpd/conf-enabled/25-$PROJECT_NAME.conf"
 }
 
 function relink {
