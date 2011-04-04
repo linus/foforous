@@ -33,7 +33,7 @@ app.dynamicHelpers
   checksum: (req, res) ->
     (file) ->
       contents = fs.readFileSync(path.join(public, file[1..]))
-      checksum = crypto.createHash("md5").update(contents).digest("base64")
+      checksum = crypto.createHash("md5").update(contents).digest("base64").replace("=", "").replace("+", "-").replace("/", "_")
       file + "?" + checksum
 
   humanDate: (req, res) ->
@@ -55,15 +55,17 @@ app.use express.cookieParser()
 app.use express.session(secret: config.password)
 app.use express.bodyParser()
 app.use csrf.check()
-app.use stylus.middleware(src: path.join(views, 'styles'), dest: public)
-app.use express.compiler(src: client, dest: public, enable: ['coffeescript'])
-app.use express.static(public, maxAge: 365 * 24 * 60 * 60)
-app.use express.router(posterous.routes(config))
 
 app.configure 'development', ->
+  app.use stylus.middleware(src: path.join(views, 'styles'), dest: public)
+  app.use express.compiler(src: client, dest: public, enable: ['coffeescript'])
+  app.use express.static(public)
+  app.use express.router(posterous.routes(config))
   app.use express.errorHandler(showStack: true, dumpExceptions: true)
 
 app.configure 'production', ->
+  app.use express.static(public, maxAge: 365 * 24 * 60 * 60)
+  app.use express.router(posterous.routes(config))
   app.use express.errorHandler()
 
 app.on 'close', ->
