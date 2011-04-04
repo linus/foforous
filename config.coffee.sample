@@ -1,9 +1,9 @@
 exports.config =
   port: 3000
   page_size: 10
-  user: "fofo"
-  password: "santosanto"
-  realm: "Admin de Fofo Flanelle"
+  user: "admin"
+  password: "password"
+  realm: "Admin"
   posterous:
-    user: "815375"
-    api_token: "HdxxxFvdmgGdFpganwDABekkbntozcgzaDgHEaDtvFyejpvxqDDJtGDpiICttoEEBeoGuGAtdwJtEjjjqIGiEpCcjJjmIhIvirHj"
+    user: "123"
+    api_token: "token"
