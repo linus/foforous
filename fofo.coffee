@@ -33,7 +33,7 @@ app.dynamicHelpers
   checksum: (req, res) ->
     (file) ->
       contents = fs.readFileSync(path.join(public, file[1..]))
-      checksum = crypto.createHash("md5").update(contents).digest("base64").replace("=", "").replace("+", "-").replace("/", "_")
+      checksum = crypto.createHash("md5").update(contents).digest("base64").replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_")
       file + "?" + checksum
 
   humanDate: (req, res) ->
