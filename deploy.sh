@@ -1,13 +1,17 @@
 #!/bin/bash
 
 PROJECT_NAME=foforous
-
 DEPLOY_PATH=/tmp/$PROJECT_NAME
+USER=linus
 
-SSH="ssh -p 32734 linus@prod2.hanssonlarsson.se"
+SSH="ssh -p 32734 $USER@prod2.hanssonlarsson.se"
 
 function remote {
     $SSH $1
+}
+
+function setup {
+    remote "sudo mkdir -p $DEPLOY_PATH; sudo chown $USER $DEPLOY_PATH; sudo mkdir -p $DEPLOY_PATH/config; sudo chown $USER $DEPLOY_PATH/config"
 }
 
 function upload_tar {
@@ -16,6 +20,10 @@ function upload_tar {
 
 function dist {
     remote "cd $RELEASE_PATH; make dist"
+}
+
+function copy_settings {
+    remote "cd $RELEASE_PATH; cp -n config.coffee.sample $DEPLOY_DIR/config/config.coffee; sudo cp -n etc/$PROJECT_NAME.conf /etc/init; sudo cp -n etc/lighttpd.conf /etc/lighttpd/conf-available/25-$PROJECT_NAME.conf"
 }
 
 function relink {
@@ -33,8 +41,12 @@ function deploy {
     RELEASE="releases/$TAG-$(date +%Y%m%d%H%M%S)"
     RELEASE_PATH=$DEPLOY_PATH/$RELEASE
 
+    setup
     upload_tar $TAG
     dist
+    copy_settings
+    relink
+    restart
 }
 
 deploy $1
