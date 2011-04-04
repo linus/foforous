@@ -2,7 +2,7 @@
 html(lang="sv")
   head
     title Fofo Flanelle
-    link(rel="stylesheet", href="/main.css")
+    link(rel="stylesheet", href=checksum("/main.css"))
   body
     header.main
       ul#notices
@@ -22,5 +22,5 @@ html(lang="sv")
     script
       google.load("jquery", "1.5.1");
       google.load("jqueryui", "1.8.11");
-    script(src="/jquery.scrollTo-min.js")
-    script(src="/main.js")
+    script(src=checksum("/jquery.scrollTo-min.js"))
+    script(src=checksum("/main.js"))

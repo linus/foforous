@@ -1,6 +1,8 @@
 #!/usr/bin/env coffee
 
+fs        = require 'fs'
 util      = require 'util'
+crypto    = require 'crypto'
 path      = require 'path'
 express   = require 'express'
 csrf      = require 'express-csrf'
@@ -27,6 +29,12 @@ app.dynamicHelpers
     req.flash()
 
   csrf: csrf.token
+
+  checksum: (req, res) ->
+    (file) ->
+      contents = fs.readFileSync(path.join(public, file[1..]))
+      checksum = crypto.createHash("md5").update(contents).digest("base64")
+      file + "?" + checksum
 
   humanDate: (req, res) ->
     (date) ->
