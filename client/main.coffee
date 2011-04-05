@@ -86,7 +86,9 @@ $(document).keydown (e) ->
 $ ->
   $window = $(window)
 
-  viewPost(window.location.pathname, false)
+  $("header.main").delay(500).animate
+    marginBottom: 0
+  , 1000, -> viewPost(window.location.pathname, false)
 
   # Update button
   do ->
