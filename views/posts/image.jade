@@ -1,4 +1,5 @@
 li
-  - var i = image.scaled500
-  img(src=i.url, alt=i.caption, height=i.height, width=i.width)
+  a(href=image.full.url, title=image.full.caption, data-width=image.full.width, data-height=image.full.height).image
+    - var i = image.scaled500
+    img(data-src=i.url, alt=i.caption, height=i.height, width=i.width)
   h2 #{i.caption}

@@ -28,8 +28,23 @@ fetch = (direction, $post) ->
 window.onpopstate = (event) ->
   viewPost(event.state.href, false) if event.state
 
+loadImages = (post) ->
+  $("img[data-src]", post).each (i, img) ->
+    $img = $(img)
+    $img
+      .hide()
+      .attr("src", $img.attr("data-src"))
+      .removeAttr("data-src")
+      .fadeIn()
+
 viewPost = (url, pushState) ->
-  $post = $("#post-#{url[1..]}")
+  if url is "/"
+    $post = $("section#posts > article:first")
+  else
+    $post = $("#post-#{url[1..]}")
+
+  loadImages($post)
+
   $prev = $post.prev()
   $next = $post.next()
 
@@ -71,8 +86,7 @@ $(document).keydown (e) ->
 $ ->
   $window = $(window)
 
-  if window.location.pathname isnt "/"
-    viewPost(window.location.pathname, false)
+  viewPost(window.location.pathname, false)
 
   # Update button
   do ->
