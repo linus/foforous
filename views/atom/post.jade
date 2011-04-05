@@ -1,0 +1,12 @@
+entry
+  title #{post.title}
+  link(rel="alternate", type="text/html", href=post.full_url)
+  id #{post.full_url}
+  updated #{new Date(post.display_date).format("isoUtcDateTime")}
+  published #{new Date(post.display_date).format("isoUtcDateTime")}
+  author
+    name #{post.user.firstname} #{post.user.lastname}
+  summary(type="html") #{post.excerpt}
+  content(type="html") #{post.body_full}
+  - if(post.tags.length)
+    != partial("category", post.tags)

@@ -76,7 +76,7 @@ app.configure 'production', ->
 app.on 'close', ->
   util.error('Server stopped.')
 
-posterous.getPosts config, (err) ->
+posterous.update.all config, (err) ->
   return console.error(err.message) if err
 
   app.listen(config.port or 3000)
