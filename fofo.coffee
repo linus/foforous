@@ -21,6 +21,10 @@ app.set('views', views)
 app.set('view engine', 'jade')
 
 # This will be in the context of every view
+app.helpers
+  config:
+    googleAnalyticsId: config.googleAnalyticsId
+
 app.dynamicHelpers
   session: (req, res) ->
     req.session

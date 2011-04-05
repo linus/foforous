@@ -4,6 +4,7 @@ exports.config =
   user: "admin"
   password: "password"
   realm: "Admin"
+  googleAnalyticsId: "UA-XXX-1"
   posterous:
     user: "123"
     api_token: "token"
