@@ -1,10 +1,9 @@
 exports.config =
   port: 3000
   page_size: 10
-  user: "admin"
-  password: "password"
-  realm: "Admin"
   googleAnalyticsId: "UA-XXX-1"
   posterous:
+    email: "user@example.com"
+    password: "some password"
     user: "123"
     api_token: "token"

@@ -62,8 +62,7 @@ exports.routes = (config) ->
 
   verifyPassword = (config) ->
     connect.basicAuth (user, password) ->
-      user is config.user and password is config.password
-    , config.realm
+      user is config.posterous.user and password is config.posterous.password
 
   (app) ->
     app.get '/update', verifyPassword(config)
