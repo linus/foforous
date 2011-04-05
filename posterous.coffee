@@ -62,7 +62,7 @@ exports.routes = (config) ->
 
   verifyPassword = (config) ->
     connect.basicAuth (user, password) ->
-      user is config.posterous.user and password is config.posterous.password
+      user is config.posterous.email and password is config.posterous.password
 
   (app) ->
     app.get '/update', verifyPassword(config)
