@@ -60,7 +60,7 @@ app.dynamicHelpers
 
 app.use express.logger()
 app.use express.cookieParser()
-app.use express.session(secret: config.password)
+app.use express.session(secret: config.posterous.password)
 app.use express.bodyParser()
 app.use csrf.check()
 app.use express.favicon(path.join(public, "favicon.ico"))
