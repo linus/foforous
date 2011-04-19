@@ -115,6 +115,7 @@ $ ->
       $(this).parent('.notice').hide()
       false
 
+  # Don't remove notices until user touches inputs
   firstMove = ->
     $('.info', '#notices').delay(1000).fadeOut('fast')
     $('.warning', '#notices').delay(5000).fadeOut('fast')
@@ -124,3 +125,11 @@ $ ->
 
   $window.bind 'mousemove', firstMove
   $window.bind 'keydown', firstMove
+
+  # Post comments
+
+  $("form.post-comment").submit (e) ->
+    $form = $(this)
+    $.post this.action, $form.serialize(), (response) =>
+      $form.parents('.post').find('ul.comments').append(response)
+    e.preventDefault()

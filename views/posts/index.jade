@@ -1,5 +1,6 @@
 - if(posts.length)
   a(href='#', class='prev', style='display: none') &#x21b5;
-  a(href='/' + posts[1].slug, class='next') &#x21b3;
+  - if(posts.length > 1)
+    a(href='/' + posts[1].slug, class='next') &#x21b3;
   section#posts
     != partial('post', posts)

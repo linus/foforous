@@ -1,0 +1,6 @@
+li(id='comment-' + comment.id, class="comment")
+  h3 #{comment.name}
+  a(href='#comment-' + comment.id)
+    != partial('date', { collection: [comment.created_at], as: 'date' })
+  p
+    != comment.body

@@ -1,4 +1,4 @@
-article(id='post-' + post.slug)
+article(id='post-' + post.slug, data-id=post.id, class='post')
   - if(post.media[2].images.length)
     ul.images
       != partial('image', post.media[2].images)
@@ -11,3 +11,12 @@ article(id='post-' + post.slug)
     != post.body_html.replace(/\[\[posterous-content:.*\]\]/, '')
   footer
     != partial('date', { collection: [post.display_date], as: 'date' })
+    form(method='post', action='/' + post.id + '/comments', class='post-comment')
+      input(type="hidden", name="csrf", value=csrf)
+      input(type='text', name='name', placeholder='Namn')
+      input(type='email', name='email', placeholder='E-post')
+      textarea(name='body', placeholder='Text')
+      button(type='submit') Post
+    ul.comments
+      - if(post.comments && post.comments.length)
+        != partial('comment', post.comments)
