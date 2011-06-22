@@ -43,6 +43,8 @@ viewPost = (url, pushState) ->
   else
     $post = $("#post-#{url[1..]}")
 
+  return if $post.length is 0
+
   loadImages($post)
 
   $prev = $post.prev()
