@@ -7,12 +7,13 @@
     { "name": "Linus G Thiel", "email": "linus@hanssonlarsson.se" }
   ],
   "dependencies": {
-    "express": "2.2.0",
+    "express": "2.4.0",
+    "connect": "1.5.1",
     "express-csrf": "0.2.0",
-    "stylus": ">= 0.6.3",
-    "jade": ">= 0.10.3",
-    "coffee-script": ">= 1.0.1",
-    "request": ">= 1.2.0"
+    "stylus": ">= 0.13.5",
+    "jade": ">= 0.12.4",
+    "coffee-script": ">= 1.1.1",
+    "request": ">= 1.9.8"
   },
   "keywords": ["blog", "posterous"],
   "engines": { "node": ">= 0.4.0" }
