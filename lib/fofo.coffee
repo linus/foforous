@@ -38,7 +38,7 @@ exports.start = module.exports.start = (config) ->
       cache = {}
       calculate = (file) ->
         contents = fs.readFileSync(path.join(public, file[1..]))
-        crypto.createHash("md5").update(contents).digest("base64").replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_")
+        crypto.createHash("md5").update(contents).digest("base64").replace(/\=/g, "").replace(/\+/g, "-").replace(/\//g, "_")
   
       (file) ->
         checksum = cache[file] or (cache[file] = calculate(file))
