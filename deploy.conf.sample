@@ -1,0 +1,5 @@
+PROJECT_NAME=foforous
+DEPLOY_PATH=/home/foforous
+USER=foo
+SSH="ssh $USER@example.com"
+

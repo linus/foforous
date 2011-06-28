@@ -1,10 +1,6 @@
 #!/bin/bash
 
-PROJECT_NAME=foforous
-DEPLOY_PATH=/opt/hanssonlarsson/$PROJECT_NAME
-USER=linus
-
-SSH="ssh -p 32734 $USER@prod2.hanssonlarsson.se"
+. deploy.conf
 
 function remote {
     $SSH -t $1
