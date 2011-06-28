@@ -2,7 +2,7 @@ NODE_PATH := ./node_modules
 PATH := ./node_modules/.bin:${PATH}
 
 init:
-	npm bundle
+	npm install
 
 clean-css:
 	rm -f public/*.css
@@ -10,7 +10,7 @@ clean-css:
 clean: clean-css
 
 dist-clean: clean
-	npm bundle destroy
+	rm -rf node_modules/
 
 build-client:
 	coffee -o public client/*.coffee
